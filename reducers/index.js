@@ -4,10 +4,15 @@ import {
   QUESTION_ANSWERED_CORRECT,
   QUESTION_ANSWERED_INCORRECT,
   DECK_CREATE
-}
+} from '../actions'
 
-function decks (state = {}, action) => {
-  switch(action) {
-    default: return state
+function decks (state = {}, action) {
+  switch(action.type) {
+    case QUIZ_START:
+      return state
+    default:
+      return state
   }
 }
+
+export default decks
