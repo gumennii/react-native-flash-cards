@@ -9,8 +9,5 @@ export const CreateQuestion = (props) => {
   );
 }
 
-CreateQuestion.propTypes = {
-
-};
 
 export default CreateQuestion

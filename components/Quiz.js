@@ -9,8 +9,5 @@ export const Quiz = (props) => {
   );
 }
 
-Quiz.propTypes = {
-
-};
 
 export default Quiz

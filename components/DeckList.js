@@ -1,16 +1,14 @@
 import React, { PropTypes } from 'react'
-import { View, Text } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
-export const DeckList = (props) => {
+export const DeckList = ({ navigation }) => {
   return (
     <View>
-      <Text>Deck List</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('Deck')}>
+        <Text>Show a single Deck</Text>
+      </TouchableOpacity>
     </View>
   );
 }
-
-DeckList.propTypes = {
-
-};
 
 export default DeckList

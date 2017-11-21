@@ -9,8 +9,4 @@ export const Deck = (props) => {
   );
 }
 
-Deck.propTypes = {
-
-};
-
 export default Deck

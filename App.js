@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet } from 'react-native'
+import { StackNavigator } from 'react-navigation'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+
 
 import DeckList from './components/DeckList'
 import Deck from './components/Deck'
@@ -7,25 +11,24 @@ import Quiz from './components/Quiz'
 import CreateDeck from './components/CreateDeck'
 import CreateQuestion from './components/CreateQuestion'
 
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
 import reducer from './reducers'
-
 const store = createStore(reducer)
+
+const Stack = StackNavigator({
+  DeckList: { screen: DeckList },
+  Deck: { screen: Deck },
+  Quiz: { screen: Quiz },
+  CreateDeck: { screen: CreateDeck },
+  CreateQuestion: { screen: CreateQuestion }
+});
 
 export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          <DeckList />
-          <Deck />
-          <Quiz />
-          <CreateDeck />
-          <CreateQuestion />
-        </View>
+        <Stack />
       </Provider>
-    );
+    )
   }
 }
 
