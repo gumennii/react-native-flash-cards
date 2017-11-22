@@ -1,10 +1,10 @@
-import React, { PropTypes } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, Text, View, TouchableOpacity, FlatList} from 'react-native'
 
 const DeckCard = ({ card, navigation }) => {
   return (
-    <View style={styles.deck} key={card.title} >
+    <View style={styles.deck} key={card.title}>
       <TouchableOpacity onPress={() => navigation.navigate('Deck', { card: card })}>
         <Text style={styles.title}>{card.title}</Text>
         <Text style={styles.amount}>{card.questions.length}</Text>
@@ -13,19 +13,27 @@ const DeckCard = ({ card, navigation }) => {
   )
 }
 
-const DeckList = ({ decks, navigation }) => {
-  return (
-    <View style={styles.list}>
-      <FlatList
-        data={Object.keys(decks)}
-        renderItem={(card) => <DeckCard card={decks[card.item]} navigation={navigation} />}
-      />
-    </View>
-  )
+class DeckList extends Component {
+  static navigationOptions = {
+    title: 'Decks'
+  }
+
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <FlatList
+          data={Object.keys(this.props.decks)}
+          keyExtractor={(card) => card}
+          renderItem={(card) => <DeckCard card={this.props.decks[card.item]} navigation={this.props.navigation} />}
+        />
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
-  list: {
+  container: {
     flex: 1,
     padding: 15,
     backgroundColor: '#FFF'
