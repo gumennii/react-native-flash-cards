@@ -1,13 +1,18 @@
-import React, { PropTypes } from 'react'
+import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 
-const Quiz = (props) => {
-  return (
-    <View>
-      <Text>{JSON.stringify(props)}</Text>
-    </View>
-  );
-}
+class Quiz extends Component {
+  static navigationOptions = {
+    title: 'Quiz'
+  }
 
+  render() {
+    return (
+      <View>
+        <Text>{JSON.stringify(props)}</Text>
+      </View>
+    )
+  }
+}
 
 export default Quiz

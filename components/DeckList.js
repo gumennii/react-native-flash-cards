@@ -4,8 +4,8 @@ import { StyleSheet, Text, View, TouchableOpacity, FlatList} from 'react-native'
 
 const DeckCard = ({ card, navigation }) => {
   return (
-    <View style={styles.deck}>
-      <TouchableOpacity onPress={() => navigation.navigate('Deck')}>
+    <View style={styles.deck} key={card.title} >
+      <TouchableOpacity onPress={() => navigation.navigate('Deck', { card: card })}>
         <Text style={styles.title}>{card.title}</Text>
         <Text style={styles.amount}>{card.questions.length}</Text>
       </TouchableOpacity>
@@ -17,9 +17,9 @@ const DeckList = ({ decks, navigation }) => {
   return (
     <View style={styles.list}>
       <FlatList
-          data={Object.keys(decks)}
-          renderItem={(card) => <DeckCard card={decks[card.item]} navigation={navigation}/>}
-        />
+        data={Object.keys(decks)}
+        renderItem={(card) => <DeckCard card={decks[card.item]} navigation={navigation} />}
+      />
     </View>
   )
 }
