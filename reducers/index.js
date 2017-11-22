@@ -6,7 +6,9 @@ import {
   DECK_CREATE
 } from '../actions'
 
-function decks (state = {}, action) {
+import { data } from '../initialData'
+
+function decks (state = data, action) {
   switch(action.type) {
     case QUIZ_START:
       return state

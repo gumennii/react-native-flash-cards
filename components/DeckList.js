@@ -1,14 +1,21 @@
 import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
-export const DeckList = ({ navigation }) => {
+const DeckList = (props) => {
   return (
     <View>
       <TouchableOpacity onPress={() => navigation.navigate('Deck')}>
-        <Text>Show a single Deck</Text>
+        <Text>{JSON.stringify(props)}</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
-export default DeckList
+const mapStateToProps = (state) => {
+  return {
+    decks: state
+  }
+}
+
+export default connect(mapStateToProps)(DeckList)
