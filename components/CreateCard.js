@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
-class CreateDeck extends Component {
+class CreateCard extends Component {
   static navigationOptions = {
-    title: 'New Deck'
+    title: 'Add Card'
   }
 
   render() {
     return (
       <View>
-        <Text>Create Deck</Text>
+        <Text>Create Question</Text>
       </View>
     )
   }
 }
 
-export default CreateDeck
+export default CreateCard
