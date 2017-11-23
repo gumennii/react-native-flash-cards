@@ -11,19 +11,26 @@ class Deck extends Component {
   }
 
   render() {
+
+    let { card, navigation } = this.props
+
     return (
       <View style={styles.container}>
         <View style={styles.content}>
           <View style={styles.deck}>
-            <Text style={styles.title}>{this.props.card.title}</Text>
-            <Text style={styles.amount}>{this.props.card.questions.length}</Text>
+            <Text style={styles.title}>{card.title}</Text>
+            <Text style={styles.amount}>{card.questions.length}</Text>
           </View>
         </View>
         <View style={styles.footer}>
-          <TouchableOpacity style={[styles.button, {marginBottom: 10}]} onPress={() => console.log('Add Card')}>
+          <TouchableOpacity
+            style={[styles.button, {marginBottom: 10}]}
+            onPress={() => navigation.navigate('CreateQuestion')}>
             <Text style={styles.buttonText}>Add Card</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, {backgroundColor:'#000'}]} onPress={() => console.log('Start Quiz')}>
+          <TouchableOpacity
+            style={[styles.button, {backgroundColor:'#000'}]}
+            onPress={() => navigation.navigate('Quiz', { card: card })}>
             <Text style={[styles.buttonText, {color: '#FFF'}]}>Start Quiz</Text>
           </TouchableOpacity>
         </View>
