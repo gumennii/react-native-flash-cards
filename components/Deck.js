@@ -20,11 +20,11 @@ class Deck extends Component {
           </View>
         </View>
         <View style={styles.footer}>
-          <TouchableOpacity style={[styles.button, {backgroundColor:'#000', marginBottom: 15}]} onPress={() => console.log('Add Card')}>
-            <Text style={[styles.buttonText, {color: '#FFF'}]}>Add Card</Text>
+          <TouchableOpacity style={[styles.button, {marginBottom: 10}]} onPress={() => console.log('Add Card')}>
+            <Text style={styles.buttonText}>Add Card</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => console.log('Add Card')}>
-            <Text style={styles.buttonText}>Start Quiz</Text>
+          <TouchableOpacity style={[styles.button, {backgroundColor:'#000'}]} onPress={() => console.log('Start Quiz')}>
+            <Text style={[styles.buttonText, {color: '#FFF'}]}>Start Quiz</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     padding: 15
   },
   footer: {
-    padding: 15
+    padding: 45
   },
   deck: {
     padding: 15,
