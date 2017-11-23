@@ -17,7 +17,11 @@ class Quiz extends Component {
     this.setState(previousState => ({ showQuestion: !previousState.showQuestion }))
   }
 
-
+  submitAnswer(status) {
+    if (status === 'correct') {
+      this.setState(previousState => ({ correctAnswers: previousState.correctAnswers + 1 }))
+    }
+  }
 
   render() {
 
@@ -27,7 +31,7 @@ class Quiz extends Component {
     return (
       <View style={styles.container}>
         <View>
-          <Text style={styles.cardsLeft}>{`${this.state.current + 1} / ${this.props.questions.length}`}</Text>
+          <Text style={styles.cardsLeft}>{`Card ${this.state.current + 1} of ${this.props.questions.length}`}</Text>
         </View>
         <View style={styles.content}>
           <View style={styles.deck}>
@@ -42,12 +46,12 @@ class Quiz extends Component {
         <View style={styles.footer}>
           <TouchableOpacity
             style={[styles.button, {backgroundColor:'#7AC74F', marginBottom: 10}]}
-            onPress={() => {}}>
+            onPress={() => this.submitAnswer('correct')}>
             <Text style={styles.buttonText}>Correct</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button, {backgroundColor:'#DB504A'}]}
-            onPress={() => {}}>
+            onPress={() => this.submitAnswer('incorrect')}>
             <Text style={styles.buttonText}>Incorrect</Text>
           </TouchableOpacity>
         </View>
