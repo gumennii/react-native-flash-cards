@@ -18,7 +18,6 @@ class DeckList extends Component {
     title: 'Decks'
   }
 
-
   render() {
     return (
       <View style={styles.container}>

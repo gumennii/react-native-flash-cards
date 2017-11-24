@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
-import { StackNavigator } from 'react-navigation'
+import { StackNavigator, TabNavigator } from 'react-navigation'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
+import { Ionicons } from '@expo/vector-icons'
 
 import DeckList from './components/DeckList'
 import Deck from './components/Deck'
@@ -13,13 +14,30 @@ import CreateCard from './components/CreateCard'
 import reducer from './reducers'
 const store = createStore(reducer)
 
+const Tabs = TabNavigator({
+  DeckList: {
+    screen: DeckList,
+    navigationOptions: {
+      tabBarLabel: 'Decks',
+      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
+    }
+  },
+  CreateDeck: {
+    screen: CreateDeck,
+    navigationOptions: {
+      tabBarLabel: 'New Deck',
+      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-add-circle' size={30} color={tintColor} />
+    }
+  }
+})
+
 const Stack = StackNavigator({
-  DeckList: { screen: DeckList },
+  Home: { screen: Tabs },
   Deck: { screen: Deck },
   Quiz: { screen: Quiz },
   CreateDeck: { screen: CreateDeck },
   CreateCard: { screen: CreateCard }
-});
+})
 
 export default class App extends Component {
   render() {
@@ -30,12 +48,3 @@ export default class App extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
