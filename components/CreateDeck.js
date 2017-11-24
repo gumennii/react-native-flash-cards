@@ -1,16 +1,24 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native'
 import { connect } from 'react-redux'
+import { addDeck } from '../actions'
+
 
 class CreateDeck extends Component {
   static navigationOptions = {
     title: 'New Deck'
   }
 
-  state = { text: '' }
+  state = { title: '' }
 
   handleSubmit() {
-    this.setState(() => ({ text: '' }))
+    this.props.dispatch(addDeck({
+      [this.state.title]: {
+        title: this.state.title,
+        questions: []
+      }
+    }))
+    this.setState({ title: '' })
     this.props.navigation.navigate('DeckList')
   }
 
@@ -21,13 +29,13 @@ class CreateDeck extends Component {
           <Text style={styles.title}>What is the title of your deck?</Text>
           <TextInput
             style={styles.input}
-            onChangeText={(text) => this.setState({text})}
+            onChangeText={(title) => this.setState({ title })}
             value={this.state.text}
           />
           <TouchableOpacity
             style={styles.button}
             onPress={() => this.handleSubmit()}>
-            <Text style={styles.buttonText}>Add Card</Text>
+            <Text style={styles.buttonText}>Submit</Text>
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
