@@ -25,7 +25,7 @@ class Deck extends Component {
         <View style={styles.footer}>
           <TouchableOpacity
             style={[styles.button, {marginBottom: 10}]}
-            onPress={() => navigation.navigate('CreateQuestion')}>
+            onPress={() => navigation.navigate('CreateCard')}>
             <Text style={styles.buttonText}>Add Card</Text>
           </TouchableOpacity>
           <TouchableOpacity
