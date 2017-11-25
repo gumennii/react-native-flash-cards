@@ -19,6 +19,7 @@ class DeckList extends Component {
   }
 
   render() {
+    console.log(this.props.decks)
     return (
       <View style={styles.container}>
         <FlatList

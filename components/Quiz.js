@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { NavigationActions } from 'react-navigation'
 
 class Quiz extends Component {
   static navigationOptions = {
@@ -19,12 +20,23 @@ class Quiz extends Component {
 
   submitAnswer(status) {
     if (status === 'correct') {
-      this.setState(previousState => ({ correctAnswers: previousState.correctAnswers + 1 }))
+      this.setState((previousState) => ({ correctAnswers: previousState.correctAnswers + 1 }))
+    }
+    this.changeQuestion()
+  }
+
+  changeQuestion() {
+    if (this.state.current === this.props.questions.length - 1) {
+      this.props.navigation.navigate('QuizResults', {
+        correctAnswers: this.state.correctAnswers,
+        totalQuestions: this.props.questions.length
+      })
+    } else {
+      this.setState((previousState) => ({ current: previousState.current + 1 }))
     }
   }
 
   render() {
-
     let question = this.props.questions[this.state.current].question
     let answer = this.props.questions[this.state.current].answer
 

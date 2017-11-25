@@ -17,10 +17,8 @@ class CreateCard extends Component {
   handleSubmit() {
     this.props.dispatch(addCard({
       title: this.props.card.title,
-      question: {
-        question: this.state.question,
-        answer: this.state.answer
-      }
+      question: this.state.question,
+      answer: this.state.answer
     }))
     this.setState(() => ({ question: '', answer: '' }))
     this.props.navigation.dispatch(NavigationActions.reset({
