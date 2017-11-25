@@ -1,10 +1,13 @@
-export const QUIZ_START = 'QUIZ_START'
+export const RECEIVE_DECKS = 'RECEIVE_DECKS'
 export const ADD_DECK = 'ADD_DECK'
 export const ADD_CARD = 'ADD_CARD'
 
-export const QUESTION_ANSWERED_CORRECT = 'QUESTION_ANSWERED_CORRECT'
-export const QUESTION_ANSWERED_INCORRECT = 'QUESTION_ANSWERED_INCORRECT'
-
+export function receiveDecks (decks) {
+  return {
+    type: RECEIVE_DECKS,
+    decks
+  }
+}
 
 export function addDeck (deck) {
   return {

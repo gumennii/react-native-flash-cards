@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, Text, View, TouchableOpacity, FlatList} from 'react-native'
+import { receiveDecks } from '../actions'
+import { fetchData } from '../utils/api'
 
 const DeckCard = ({ card, navigation }) => {
   return (
@@ -18,10 +20,15 @@ class DeckList extends Component {
     title: 'Decks'
   }
 
+  componentDidMount() {
+    fetchData()
+      .then((decks) => this.props.dispatch(receiveDecks(decks)))
+  }
+
   render() {
-    console.log(this.props.decks)
     return (
       <View style={styles.container}>
+        {/* <Text>{JSON.stringify(this.props.decks, null, '')}</Text> */}
         <FlatList
           data={Object.keys(this.props.decks)}
           keyExtractor={(card) => card}
@@ -55,9 +62,9 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (decks) => {
   return {
-    decks: state
+    decks
   }
 }
 
