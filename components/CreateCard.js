@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native'
+import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import { addCard } from '../actions'
 
@@ -15,14 +16,18 @@ class CreateCard extends Component {
 
   handleSubmit() {
     this.props.dispatch(addCard({
-      title: 'React',
+      title: this.props.card.title,
       question: {
         question: this.state.question,
         answer: this.state.answer
       }
     }))
     this.setState(() => ({ question: '', answer: '' }))
-    this.props.navigation.navigate('Test')
+    this.props.navigation.dispatch(NavigationActions.reset({
+      index: 0,
+      key: null,
+      actions: [NavigationActions.navigate({ routeName: 'Home' })]
+    }))
   }
 
   render() {
@@ -96,5 +101,11 @@ const styles = StyleSheet.create({
   }
 })
 
+const mapStateToProps = (state, props) => {
+  return {
+    card: props.navigation.state.params.card,
+    decks: state
+  }
+}
 
-export default connect()(CreateCard)
+export default connect(mapStateToProps)(CreateCard)
