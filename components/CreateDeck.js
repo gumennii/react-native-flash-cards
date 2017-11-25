@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingVi
 import { connect } from 'react-redux'
 import { addDeck } from '../actions'
 
-
 class CreateDeck extends Component {
   static navigationOptions = {
     title: 'New Deck'
@@ -81,10 +80,4 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = (state, props) => {
-  return {
-    //card: props.navigation.state.params.card
-  }
-}
-
-export default connect(mapStateToProps)(CreateDeck)
+export default connect()(CreateDeck)

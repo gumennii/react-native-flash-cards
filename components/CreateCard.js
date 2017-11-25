@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native'
+import { connect } from 'react-redux'
+import { addCard } from '../actions'
 
 class CreateCard extends Component {
   static navigationOptions = {
@@ -12,8 +14,15 @@ class CreateCard extends Component {
   }
 
   handleSubmit() {
-    this.setState(() => ({ text: '' }))
-    this.props.navigation.navigate('DeckList')
+    this.props.dispatch(addCard({
+      title: 'React',
+      question: {
+        question: this.state.question,
+        answer: this.state.answer
+      }
+    }))
+    this.setState(() => ({ question: '', answer: '' }))
+    this.props.navigation.navigate('Test')
   }
 
   render() {
@@ -24,13 +33,13 @@ class CreateCard extends Component {
           <Text style={styles.label}>Question</Text>
           <TextInput
             style={styles.input}
-            onChangeText={(text) => this.setState({question})}
+            onChangeText={(question) => this.setState({ question })}
             value={this.state.text}
           />
           <Text style={styles.label}>Answer</Text>
           <TextInput
             style={styles.input}
-            onChangeText={(text) => this.setState({answer})}
+            onChangeText={(answer) => this.setState({ answer })}
             value={this.state.text}
           />
           <TouchableOpacity
@@ -87,4 +96,5 @@ const styles = StyleSheet.create({
   }
 })
 
-export default CreateCard
+
+export default connect()(CreateCard)

@@ -10,6 +10,7 @@ import Deck from './components/Deck'
 import Quiz from './components/Quiz'
 import CreateDeck from './components/CreateDeck'
 import CreateCard from './components/CreateCard'
+import Test from './components/Test'
 
 import reducer from './reducers'
 const store = createStore(reducer)
@@ -36,7 +37,8 @@ const Stack = StackNavigator({
   Deck: { screen: Deck },
   Quiz: { screen: Quiz },
   CreateDeck: { screen: CreateDeck },
-  CreateCard: { screen: CreateCard }
+  CreateCard: { screen: CreateCard },
+  Test: { screen: Test }
 })
 
 export default class App extends Component {
