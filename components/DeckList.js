@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, Text, View, TouchableOpacity, FlatList} from 'react-native'
 import { receiveDecks } from '../actions'
-import { fetchData } from '../utils/api'
+import { getDecks } from '../utils/api'
 
 const DeckCard = ({ card, navigation }) => {
   return (
@@ -21,7 +21,7 @@ class DeckList extends Component {
   }
 
   componentDidMount() {
-    fetchData()
+    getDecks()
       .then((decks) => this.props.dispatch(receiveDecks(decks)))
   }
 

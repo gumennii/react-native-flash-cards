@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingVi
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import { addCard } from '../actions'
-import { apiAddCard } from '../utils/api'
+import { addCardToDeck } from '../utils/api'
 
 class CreateCard extends Component {
   static navigationOptions = {
@@ -21,7 +21,7 @@ class CreateCard extends Component {
     let answer =  this.state.answer
     let questions = [ { question, answer }]
 
-    apiAddCard({ key, questions })
+    addCardToDeck({ key, questions })
 
     this.props.dispatch(addCard({
       title: key,

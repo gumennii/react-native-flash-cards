@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native'
 import { connect } from 'react-redux'
 import { addDeck } from '../actions'
-import { apiAddDeck } from '../utils/api'
+import { saveDeckTitle } from '../utils/api'
 
 class CreateDeck extends Component {
   static navigationOptions = {
@@ -17,11 +17,13 @@ class CreateDeck extends Component {
       title: key,
       questions: []
     }
+
     this.props.dispatch(addDeck({
       [key]: entry
     }))
-    apiAddDeck({ key, entry })
-    
+
+    saveDeckTitle({ key, entry })
+
     this.setState({ title: '' })
     this.props.navigation.navigate('DeckList')
   }
