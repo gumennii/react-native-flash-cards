@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { NavigationActions } from 'react-navigation'
+import { clearLocalNotification, setLocalNotification } from '../utils/notifications'
 
 class Quiz extends Component {
   static navigationOptions = {
@@ -22,6 +23,10 @@ class Quiz extends Component {
     if (status === 'correct') {
       this.setState((previousState) => ({ correctAnswers: previousState.correctAnswers + 1 }))
     }
+
+    clearLocalNotification()
+      .then(setLocalNotification)
+      
     this.changeQuestion()
   }
 
