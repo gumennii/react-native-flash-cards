@@ -22,7 +22,7 @@ class DeckList extends Component {
 
   componentDidMount() {
     getDecks()
-      .then((decks) => this.props.dispatch(receiveDecks(decks)))
+      .then(decks => this.props.dispatch(receiveDecks(decks)))
   }
 
   render() {

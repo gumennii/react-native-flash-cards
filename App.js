@@ -11,7 +11,6 @@ import Deck from './components/Deck'
 import Quiz from './components/Quiz'
 import CreateDeck from './components/CreateDeck'
 import CreateCard from './components/CreateCard'
-import QuizResults from './components/QuizResults'
 import Test from './components/Test'
 
 import reducer from './reducers'
@@ -40,7 +39,6 @@ const Stack = StackNavigator({
   Quiz: { screen: Quiz },
   CreateDeck: { screen: CreateDeck },
   CreateCard: { screen: CreateCard },
-  QuizResults: { screen: QuizResults },
   Test: { screen: Test }
 })
 

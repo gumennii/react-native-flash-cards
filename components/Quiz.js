@@ -11,8 +11,9 @@ class Quiz extends Component {
 
   state = {
     current: 0,
+    correctAnswers: 0,
     showQuestion: true,
-    correctAnswers: 0
+    showResults: false
   }
 
   toggleView() {
@@ -26,54 +27,87 @@ class Quiz extends Component {
 
     clearLocalNotification()
       .then(setLocalNotification)
-      
+
     this.changeQuestion()
   }
 
   changeQuestion() {
     if (this.state.current === this.props.questions.length - 1) {
-      this.props.navigation.navigate('QuizResults', {
-        correctAnswers: this.state.correctAnswers,
-        totalQuestions: this.props.questions.length
-      })
+      this.setState((previousState) => ({ showResults: true }))
     } else {
       this.setState((previousState) => ({ current: previousState.current + 1 }))
     }
   }
 
+  goToDeckList() {
+    this.props.navigation.dispatch(NavigationActions.reset({
+      index: 0,
+      key: null,
+      actions: [NavigationActions.navigate({ routeName: 'Home' })]
+    }))
+  }
+
+  calculatePrecentage() {
+    let value = (this.state.correctAnswers / this.props.questions.length) * 100
+    return (
+      parseFloat(value) + "%"
+    )
+  }
+
   render() {
     let question = this.props.questions[this.state.current].question
     let answer = this.props.questions[this.state.current].answer
-    console.log(this.props.questions)
-    return (
-      <View style={styles.container}>
-        <View>
-          <Text style={styles.cardsLeft}>{`Card ${this.state.current + 1} of ${this.props.questions.length}`}</Text>
-        </View>
-        <View style={styles.content}>
-          <View style={styles.deck}>
-            <Text style={styles.title}>
-              {this.state.showQuestion ? question : answer}
-            </Text>
-            <TouchableOpacity onPress={() => this.toggleView()}>
-              <Text style={styles.toggle}>{this.state.showQuestion ? 'Show Answer' : 'Show Question'}</Text>
+
+    if (this.state.showResults === false) {
+      return (
+        <View style={styles.container}>
+          <View>
+            <Text style={styles.cardsLeft}>{`Card ${this.state.current + 1} of ${this.props.questions.length}`}</Text>
+          </View>
+          <View style={styles.content}>
+            <View style={styles.deck}>
+              <Text style={styles.title}>
+                {this.state.showQuestion ? question : answer}
+              </Text>
+              <TouchableOpacity onPress={() => this.toggleView()}>
+                <Text style={styles.toggle}>{this.state.showQuestion ? 'Show Answer' : 'Show Question'}</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.footer}>
+            <TouchableOpacity
+              style={[styles.button, {backgroundColor:'#7AC74F', marginBottom: 10}]}
+              onPress={() => this.submitAnswer('correct')}>
+              <Text style={styles.buttonText}>Correct</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.button, {backgroundColor:'#DB504A'}]}
+              onPress={() => this.submitAnswer('incorrect')}>
+              <Text style={styles.buttonText}>Incorrect</Text>
             </TouchableOpacity>
           </View>
         </View>
-        <View style={styles.footer}>
-          <TouchableOpacity
-            style={[styles.button, {backgroundColor:'#7AC74F', marginBottom: 10}]}
-            onPress={() => this.submitAnswer('correct')}>
-            <Text style={styles.buttonText}>Correct</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.button, {backgroundColor:'#DB504A'}]}
-            onPress={() => this.submitAnswer('incorrect')}>
-            <Text style={styles.buttonText}>Incorrect</Text>
-          </TouchableOpacity>
+      )
+    } else {
+      return (
+        <View style={styles.container}>
+          <View style={styles.content}>
+            <View style={styles.deck}>
+              <Text style={styles.title}>
+                Your Result is {this.calculatePrecentage()}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.footer}>
+            <TouchableOpacity
+              style={[styles.button, {backgroundColor:'#000'}]}
+              onPress={() => this.goToDeckList()}>
+              <Text style={[styles.buttonText, {color: '#FFF'}]}>Go Home</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-    )
+      )
+    }
   }
 }
 
