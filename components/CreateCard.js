@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingVi
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import { addCard } from '../actions'
+import { apiAddCard } from '../utils/api'
 
 class CreateCard extends Component {
   static navigationOptions = {
@@ -15,11 +16,19 @@ class CreateCard extends Component {
   }
 
   handleSubmit() {
+    let key = this.props.card.title
+    let question = this.state.question
+    let answer =  this.state.answer
+    let questions = [ { question, answer }]
+
+    apiAddCard({ key, questions })
+
     this.props.dispatch(addCard({
-      title: this.props.card.title,
-      question: this.state.question,
-      answer: this.state.answer
+      title: key,
+      questions
     }))
+
+
     this.setState(() => ({ question: '', answer: '' }))
     this.props.navigation.dispatch(NavigationActions.reset({
       index: 0,
