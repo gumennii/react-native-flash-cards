@@ -39,7 +39,7 @@ class Quiz extends Component {
   render() {
     let question = this.props.questions[this.state.current].question
     let answer = this.props.questions[this.state.current].answer
-
+    console.log(this.props.questions)
     return (
       <View style={styles.container}>
         <View>

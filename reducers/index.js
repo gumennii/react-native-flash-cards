@@ -26,7 +26,7 @@ function decks (state = {}, action) {
           title: action.card.title,
           questions: [
             ...state[action.card.title].questions,
-            action.questions
+            {...action.questions}
           ]
         }
       }

@@ -16,7 +16,7 @@ export function apiAddDeck({ key, entry }) {
 export function apiAddCard({ key, questions }) {
   return AsyncStorage.getItem(STORAGE_KEY, (err, result) => {
     let currentQuestions = JSON.parse(result)[key].questions
-    let updatedQuestion = [...currentQuestions, questions]
+    let updatedQuestion = [...currentQuestions, ...questions]
     return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify({
       [key]: {
         questions: updatedQuestion
