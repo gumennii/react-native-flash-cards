@@ -38,7 +38,7 @@ Like `yarn start`, but also attempts to open your app on a connected Android dev
 ## Frontend File Structure
 ---
 - `/actions` - Actions and Action Creators
-- `/components` - React Components
+- `/components` - React Components (includes styles and navigation)
 - `/reducers` - Redux Reducers
 - `/utils` - Utility/Helper functions
 - `App.js` - Main App Components which includes Routes
