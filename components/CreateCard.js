@@ -27,11 +27,7 @@ class CreateCard extends Component {
     this.props.addCard(key, questions)
 
     this.setState(() => ({ question: '', answer: '' }))
-    this.props.navigation.dispatch(NavigationActions.reset({
-      index: 0,
-      key: null,
-      actions: [NavigationActions.navigate({ routeName: 'Home' })]
-    }))
+    this.props.navigation.goBack()
   }
 
   render() {
