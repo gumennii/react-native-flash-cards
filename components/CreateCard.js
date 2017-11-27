@@ -24,11 +24,7 @@ class CreateCard extends Component {
 
     addCardToDeck({ key, questions })
 
-    this.props.dispatch(addCard({
-      title: key,
-      questions
-    }))
-
+    this.props.addCard(key, questions)
 
     this.setState(() => ({ question: '', answer: '' }))
     this.props.navigation.dispatch(NavigationActions.reset({
@@ -73,4 +69,10 @@ const mapStateToProps = (state, props) => {
   }
 }
 
-export default connect(mapStateToProps)(CreateCard)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addCard: (key, questions) => dispatch(addCard({title: key, questions})),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateCard)

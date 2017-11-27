@@ -19,9 +19,7 @@ class CreateDeck extends Component {
       questions: []
     }
 
-    this.props.dispatch(addDeck({
-      [key]: entry
-    }))
+    this.props.addDeck(key, entry)
 
     saveDeckTitle({ key, entry })
 
@@ -50,4 +48,10 @@ class CreateDeck extends Component {
   }
 }
 
-export default connect()(CreateDeck)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addDeck: (key, entry) => dispatch(addDeck({[key]: entry})),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(CreateDeck);
