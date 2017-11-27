@@ -24,7 +24,7 @@ class CreateDeck extends Component {
     saveDeckTitle({ key, entry })
 
     this.setState({ title: '' })
-    this.props.navigation.navigate('DeckList')
+    this.props.navigation.navigate('Deck', { card: entry })
   }
 
   render() {
