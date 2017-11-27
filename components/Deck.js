@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
+import styles from './styles'
 
 class Deck extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -40,45 +41,6 @@ class Deck extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFF'
-  },
-  content: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 15
-  },
-  footer: {
-    padding: 45
-  },
-  deck: {
-    padding: 15,
-    marginBottom: 15
-  },
-  title: {
-    textAlign: 'center',
-    fontSize: 20,
-    fontWeight: 'bold'
-  },
-  amount: {
-    textAlign: 'center',
-    fontSize: 16
-  },
-  button: {
-    padding: 15,
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: '#000'
-  },
-  buttonText: {
-    textAlign: 'center',
-    fontWeight: 'bold'
-  }
-})
 
 const mapStateToProps = (state, props) => {
   return {

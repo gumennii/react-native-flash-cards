@@ -4,6 +4,7 @@ import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import { addCard } from '../actions'
 import { addCardToDeck } from '../utils/api'
+import styles from './styles'
 
 class CreateCard extends Component {
   static navigationOptions = {
@@ -64,49 +65,6 @@ class CreateCard extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFF'
-  },
-  content: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 15
-  },
-  title: {
-    marginBottom: 15,
-    textAlign: 'center',
-    fontSize: 20,
-    fontWeight: 'bold'
-  },
-  button: {
-    padding: 15,
-    borderRadius: 5,
-    backgroundColor: '#000'
-  },
-  buttonText: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    color: '#FFF'
-  },
-  input: {
-    height: 40,
-    width: 300,
-    marginBottom: 15,
-    paddingLeft: 10,
-    borderColor: '#999',
-    borderWidth: 1,
-    borderRadius: 5
-  },
-  label: {
-    marginBottom: 5,
-    fontSize: 14,
-    color: '#666'
-  }
-})
 
 const mapStateToProps = (state, props) => {
   return {

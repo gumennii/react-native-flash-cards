@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { clearLocalNotification, setLocalNotification } from '../utils/notifications'
+import styles from './styles'
 
 class Quiz extends Component {
   static navigationOptions = {
@@ -75,14 +76,14 @@ class Quiz extends Component {
         </View>
         <View style={styles.footer}>
           <TouchableOpacity
-            style={[styles.button, {backgroundColor:'#7AC74F', marginBottom: 10}]}
+            style={[styles.buttonPlain, {backgroundColor:'#7AC74F', marginBottom: 10}]}
             onPress={() => this.submitAnswer('correct')}>
-            <Text style={styles.buttonText}>Correct</Text>
+            <Text style={styles.buttonBlackText}>Correct</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.button, {backgroundColor:'#DB504A'}]}
+            style={[styles.buttonPlain, {backgroundColor:'#DB504A'}]}
             onPress={() => this.submitAnswer('incorrect')}>
-            <Text style={styles.buttonText}>Incorrect</Text>
+            <Text style={styles.buttonBlackText}>Incorrect</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -106,50 +107,6 @@ class Quiz extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFF'
-  },
-  content: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 15
-  },
-  footer: {
-    padding: 45
-  },
-  deck: {
-    padding: 15,
-    marginBottom: 15
-  },
-  title: {
-    textAlign: 'center',
-    fontSize: 20,
-    fontWeight: 'bold'
-  },
-  button: {
-    padding: 15,
-    borderRadius: 5
-  },
-  buttonText: {
-    color: 'white',
-    textAlign: 'center',
-    fontWeight: 'bold'
-  },
-  toggle: {
-    padding: 5,
-    color: '#999',
-    textAlign: 'center'
-  },
-  cardsLeft: {
-    padding: 10,
-    textAlign: 'center',
-    fontWeight: 'bold'
-  }
-})
 
 const mapStateToProps = (state, props) => {
   return {
