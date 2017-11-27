@@ -40,14 +40,6 @@ class Quiz extends Component {
     }
   }
 
-  goToDeckList() {
-    this.props.navigation.dispatch(NavigationActions.reset({
-      index: 0,
-      key: null,
-      actions: [NavigationActions.navigate({ routeName: 'Home' })]
-    }))
-  }
-
   calculatePrecentage() {
     let value = (this.state.correctAnswers / this.props.questions.length) * 100
     return (
@@ -56,6 +48,7 @@ class Quiz extends Component {
   }
 
   render() {
+    console.log(this.props.card)
     let question = this.props.questions[this.state.current].question
     let answer = this.props.questions[this.state.current].answer
 
@@ -98,9 +91,14 @@ class Quiz extends Component {
         </View>
         <View style={styles.footer}>
           <TouchableOpacity
+            style={[styles.button, {marginBottom: 10}]}
+            onPress={() => this.props.navigation.navigate('Quiz', { card: this.props.card })}>
+            <Text style={styles.buttonText}>Restart Quiz</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
             style={[styles.button, {backgroundColor:'#000'}]}
-            onPress={() => this.goToDeckList()}>
-            <Text style={[styles.buttonText, {color: '#FFF'}]}>Go Home</Text>
+            onPress={() => this.props.navigation.navigate('Deck', { card: this.props.card })}>
+            <Text style={[styles.buttonText, {color: '#FFF'}]}>Back to Deck</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -110,6 +108,7 @@ class Quiz extends Component {
 
 const mapStateToProps = (state, props) => {
   return {
+    card: props.navigation.state.params.card,
     questions: props.navigation.state.params.card.questions
   }
 }
